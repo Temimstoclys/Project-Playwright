@@ -3,3 +3,4 @@ pytest-playwright
 playwright
 pytest-html
 flake8
+allure-pytest
