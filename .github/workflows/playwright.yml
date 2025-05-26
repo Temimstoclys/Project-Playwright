@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: CI/CD - Playwright Automated Tests
 
 on:
   push:
@@ -11,27 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: 🐍 Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           playwright install
 
-      - name: Run Tests
-        run: |
-          pytest -v
+      - name: 🧹 Clean old Allure reports
+        run: rm -rf reports/allure-results
 
-      - name: Upload Test Report
+      - name: 🚀 Run Tests
+        run: pytest -v --alluredir=reports/allure-results
+
+      - name: 📦 Upload Allure Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-test-report
-          path: reports/
+          name: allure-results
+          path: reports/allure-results
