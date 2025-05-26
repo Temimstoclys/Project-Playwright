@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  pytest:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,15 +24,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install allure-pytest
+          pip install pytest-order
           playwright install
 
       - name: 🧹 Clean old Allure reports
         run: rm -rf reports/allure-results
 
-      - name: 🚀 Run Tests
+      - name: 🚀 Run Tests with Allure Report
         run: pytest -v --alluredir=reports/allure-results
 
-      - name: 📦 Upload Allure Report
+      - name: 📦 Upload Allure Report as Artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
