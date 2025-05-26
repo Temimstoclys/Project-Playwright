@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+env/
+.venv/
+venv/
+
+# Playwright cache and reports
+playwright-report/
+reports/
+allure-results/
+allure-report/
+
+# Pytest cache
+.pytest_cache/
+
+# VSCode and IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Node modules (caso tenha algo Node no projeto)
+node_modules/
+
+# Backup files
+*.bak
+*.old
+*.tmp
+*.temp
